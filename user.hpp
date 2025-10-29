@@ -15,8 +15,8 @@ class User{
             return a->username < b->username;
         }
     };
-public:
     std::set<User*, UserPtrLess> friends;
+public:
     User(std::string username) : username(username), posts(new AVL()), post_count(0) {}
     void AddPost(std::string post){
         posts->insert(post);

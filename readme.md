@@ -1,6 +1,7 @@
 # SocialNet Simulator
 
-## COL106 Long Assignment 2
+Name : Nehal Bansal
+Entry No. : 2024MT10788
 
 A command-line social network simulator that implements core backend functionalities for managing users, friendships, and content using AVL Trees and Graphs.
 
@@ -228,12 +229,3 @@ Timestamp: Wed Oct 29 12:00:00 2025
 EXIT
 ```
 
-## Author
-
-COL106 Data Structures Course Assignment
-
-## Submission Details
-
-- **Deadline**: November 05, 15:00 IST (Wednesday)
-- **Type**: Individual Assignment
-- **Evaluation**: Viva including code review, command testing, and code quality assessment
