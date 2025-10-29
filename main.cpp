@@ -1,6 +1,8 @@
 #include <sstream>
 #include <user.hpp>
-
+inline void to_lowercase(std::string& s){
+    std::transform(s.begin(), s.end(), s.begin(), [](unsigned char c){ return std::tolower(c); });
+};
 int main() {
     std::string line;
     std::cout << "SocialNet" << std::endl;
@@ -29,6 +31,7 @@ int main() {
         }
         std::string username;
         ss >> username;
+        to_lowercase(username);
         User* active_user = getUser(username);
         if (command == "ADD_USER"){
             if (active_user){
@@ -69,6 +72,7 @@ int main() {
         else{
             std::string friend_username;
             ss >> friend_username;
+            to_lowercase(friend_username);
             User* friend_user = getUser(friend_username);
             if(!friend_user) {
                 std::cout << "Error: User '" << friend_username << "' not found" << std::endl;

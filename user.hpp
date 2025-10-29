@@ -3,7 +3,7 @@
 #include <unordered_map>
 #include <set>
 #include <queue>
-struct User{
+class User{
     std::string username;
     std::string hashedpassword;
     std::string email;
@@ -15,6 +15,7 @@ struct User{
             return a->username < b->username;
         }
     };
+public:
     std::set<User*, UserPtrLess> friends;
     User(std::string username) : username(username), posts(new AVL()), post_count(0) {}
     void AddPost(std::string post){
