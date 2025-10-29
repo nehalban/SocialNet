@@ -1,6 +1,6 @@
 # SocialNet Simulator
 
-Name : Nehal Bansal
+Name : Nehal Bansal  
 Entry No. : 2024MT10788
 
 A command-line social network simulator that implements core backend functionalities for managing users, friendships, and content using AVL Trees and Graphs.
