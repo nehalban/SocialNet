@@ -1,5 +1,6 @@
 #include <sstream>
-#include <user.hpp>
+#include <algorithm>
+#include "user.hpp"
 inline void to_lowercase(std::string& s){
     std::transform(s.begin(), s.end(), s.begin(), [](unsigned char c){ return std::tolower(c); });
 };
@@ -22,11 +23,11 @@ int main() {
                     << "ADD_USER <username>: Adds a new user to the network, initially with no friends and no posts.\n"
                     << "ADD_FRIEND <username1> <username2>: Establishes a bidirectional friendship between two existing usernames.\n"
                     << "REMOVE_FRIEND <username1> <username2>: Removes the friendship between two usernames if it exists.\n"
-                    << "LIST FRIENDS <username>: Prints an alphabetically sorted list of the specified username's friends.\n"
-                    << "SUGGEST FRIENDS <username> <N>: Recommends up to N new friends who are ”friends of a friend” but not already friends. Recommendations are ranked by the number of mutual friends (descending). Ties are broken by alphabetical order of usernames. If N is 0, output nothing. If fewer than N candidates exist, list all available.\n"
-                    << "DEGREES OF SEPARATION <username1> <username2>: Calculates the length of the shortest path of friendships between two usernames. If no path exists, reports -1.\n"
-                    << "ADD POST <username> <post content>: Add a post whose content is the post content string, to the posts created by the specified user.\n"
-                    << "OUTPUT POSTS <username> <N>: Output the most recent N posts of the user, in reverse chronological order. If N is -1, you should output all the posts by the user. If there are fewer than N posts by the user, then list all available posts.\n";
+                    << "LIST_FRIENDS <username>: Prints an alphabetically sorted list of the specified username's friends.\n"
+                    << "SUGGEST_FRIENDS <username> <N>: Recommends up to N new friends who are ”friends of a friend” but not already friends. Recommendations are ranked by the number of mutual friends (descending). Ties are broken by alphabetical order of usernames. If N is 0, output nothing. If fewer than N candidates exist, list all available.\n"
+                    << "DEGREES_OF_SEPARATION <username1> <username2>: Calculates the length of the shortest path of friendships between two usernames. If no path exists, reports -1.\n"
+                    << "ADD_POST <username> <post content>: Add a post whose content is the post content string, to the posts created by the specified user.\n"
+                    << "OUTPUT_POSTS <username> <N>: Output the most recent N posts of the user, in reverse chronological order. If N is -1, you should output all the posts by the user. If there are fewer than N posts by the user, then list all available posts.\n";
             continue;
         }
         std::string username;

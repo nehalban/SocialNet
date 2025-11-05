@@ -1,5 +1,5 @@
 #pragma once
-#include <avl.hpp>
+#include "avl.hpp"
 #include <unordered_map>
 #include <set>
 #include <queue>
@@ -46,6 +46,7 @@ public:
                 mutualFriendsCount[friendOfFriend]++;
             }
         }
+        mutualFriendsCount.erase(this);
         for(const auto& friendUser: friends) {
             mutualFriendsCount.erase(friendUser);
         }
@@ -96,7 +97,7 @@ public:
             for(auto friendUser : currentUser->friends){
                 if(visited.find(friendUser) == visited.end()){
                     if(friendUser == targetUser){
-                        std::cout << "Degrees of Separation: " << degree + 1 << std::endl;
+                        std::cout << "Degrees of Separation: " << degree<< std::endl;
                         return;
                     }
                     visited.insert(friendUser);

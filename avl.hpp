@@ -2,7 +2,6 @@
 #include <iostream>
 #include <ctime>
 #include <string>
-#include <stdexcept>
 #include <stack>
 struct AVLNode {
     time_t timestamp;
@@ -13,8 +12,7 @@ struct AVLNode {
 
     AVLNode(std::string post) : timestamp(std::time(nullptr)), post(post), left(nullptr), right(nullptr), height(0) {}
 };
-struct AVL
-{
+struct AVL{
     AVLNode* root;
 
     AVL() : root(nullptr) {}
@@ -24,7 +22,10 @@ struct AVL
     }
 
     int balance(AVLNode* N) {
-        if(!N) throw std::invalid_argument("Invalid AVLNode");
+        if(!N){
+            std::cout<<"Error: Trying to get balance of a null node"<<std::endl;
+            return 0;
+        }
         return height(N->left) - height(N->right);
     }
 
@@ -52,24 +53,34 @@ struct AVL
         return x;
     }
 
-    void insert(std::string post) {
-        std::stack<AVLNode*> st;
-        if(!root){
+    void insert(const std::string& post) {
+        if (!root) {
             root = new AVLNode(post);
             return;
         }
-        AVLNode* curr=root;
-        while(curr->right){
+        std::stack<AVLNode*> st;
+        AVLNode* curr = root;
+        while (curr->right) {
             st.push(curr);
-            curr=curr->right;
+            curr = curr->right;
         }
         curr->right = new AVLNode(post);
-        curr->height=1 + std::max(height(curr->left), height(curr->right));
-        while(!st.empty()){
-            AVLNode* node=st.top();
+        curr->height = 1 + std::max(height(curr->left), height(curr->right));
+        while (!st.empty()) {
+            AVLNode* node = st.top();
             st.pop();
             node->height = 1 + std::max(height(node->left), height(node->right));
-            if (balance(node) < -1) node = leftRotate(node);
+            int bf = balance(node);
+
+            if (bf < -1) {
+                AVLNode* rotated = leftRotate(node);
+                if (st.empty()) {
+                    root = rotated;
+                } else {
+                    AVLNode* parent = st.top();
+                    if (parent->right == node) parent->right = rotated; else parent->left = rotated;
+                }
+            }
         }
     }
 
